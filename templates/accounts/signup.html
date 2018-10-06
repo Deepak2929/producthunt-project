@@ -4,8 +4,30 @@
 
 {% block content %}
 
+{% if error %}
+{{ error }}
+</br>
+</br>
+{% endif %}
 
-signup
-
+<div class="container text-center" >
+	<h1>Sign Up</h1>
+	<form action="{% url 'signup' %}" method="post">
+		{% csrf_token %}
+		<label for="username">Username : </br>
+		<input type='text' name="username" /></label></br>
+		
+		<label for="password">Password : </br>
+		<input type='password' name="password" /></label></br>
+		
+		<label for="Cpassword">Confirm Password : </br> 
+		<input type='password' name="Cpassword" /> </label></br>
+		
+		<input type="submit" class="btn btn-primary" value="SignUp"/>
+	</form>
+</div>
+	
+	
+	
 
 {% endblock %}

@@ -5,7 +5,7 @@ from django.contrib import auth
 # Create your views here.
 def signup(request):
 	if request.method=="POST":
-		#Userwants to signin
+		#Userwants to signup
 		if request.POST["password"]== request.POST["Cpassword"]:
 			try:
 				user = User.objects.get(username=request.POST['username'])
@@ -14,6 +14,8 @@ def signup(request):
 				user = User.objects.create_user(request.POST['username'],password=request.POST["Cpassword"])
 				auth.login(request,user)
 				return redirect('home')
+		else:
+			return render(request, 'accounts/signup.html',{'error':'Passwords must match!'})
 			
 	else:
 		
@@ -22,11 +24,24 @@ def signup(request):
 	
 	
 def login(request):
-	return render(request, 'accounts/login.html')
+	if request.method=="POST":
+		user = auth.authenticate(username=request.POST['username'],password=request.POST["password"])
+		if user is not None:
+			auth.login(request,user)
+			return redirect('home')
+		else:
+			return render(request, 'accounts/login.html',{'error':'Username or Password is Incorrect!'})
+		
+	else:
+		return render(request, 'accounts/login.html')
 	
 	
 def logout(request):
 	#NEED TO ROUTE TO HOMEPAGE
 	#DON'T FORGET TO LOGOUT
-	
-	return render(request, 'accounts/signup.html')
+	if request.method=="POST":
+		auth.logout(request)
+		return redirect('home')
+		
+		
+		

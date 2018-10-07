@@ -8,7 +8,7 @@
 {% for products in products.all %}
 <div class="row pt-3">
 	<div class="col-2" onclick="window.location='{% url 'detail' products.id %}'; " style="cursor: pointer">
-	<img src="{{ products.image.url }}" class="img-fluid" />
+	<img src="{{ products.icon.url }}" class="img-fluid" />
 	</div>
 	
 

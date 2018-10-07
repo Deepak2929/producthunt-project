@@ -18,6 +18,8 @@
 <hr>
 <div class="row">
 	<div class="col-7">
+		<h4>Created By: {{ product.hunter.username }}</h4>
+		<h6>Publish Date: {{ product.pub_date }}</h6>
 		<img src="{{ product.image.url }}" class="img-fluid" />
 
 	</div>
@@ -30,17 +32,8 @@
 </div>
 
 
-<div class="row">
-	<div class="col-4 text-left">
-		<h4>Created By: {{ product.hunter.username }}</h4>
 
-	</div>
-	
-	<div class="col-4 text-left">
-		<h6>Publish Date: {{ product.pub_date }}</h6>		
-		
-	</div>
-</div>
+
 
 <form id="upvote"method="POST" action="{% url 'upvote' product.id %}">
 	{% csrf_token %}

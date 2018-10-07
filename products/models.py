@@ -18,7 +18,7 @@ class Product(models.Model):
 		return self.title
 	
 	def summary(self):
-		return self.body[0:100]
+		return self.body[0:150]
 
 
 
